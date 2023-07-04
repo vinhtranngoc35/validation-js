@@ -11,7 +11,7 @@ function formInput(props, index) {
                     onblur="onFocus(${index})" 
                     ${props.pattern ? `pattern=${props.pattern}` : ""} 
                     value="${props.value}"
-                    required=${props.require || false} /></br>
+                    ${props.require ? 'required' : ''} /></br>
                 <span class="error">${props.message}</span>
             </div>`
 }
@@ -28,7 +28,7 @@ function formSelect(props, index) {
                     onblur="onFocus(${index})" 
                     ${props.pattern ? `pattern=${props.pattern}` : ""} 
                     value="${props.value}"
-                    required=${props.require || false}>
+                    ${props.require ? 'required' : ''}>
                         <option value>---Choose---</option>
                         ${optionsStr}
                     </select>
@@ -46,9 +46,9 @@ const inputs = [
     {
         label: "Username",
         name: "username",
-        pattern: "^[A-Za-z]{6,20}",
+        pattern: "^$|[A-Za-z]{6,20}",
         message: "Username must have minimun is 6 charaters and maximun is 20 charaters",
-        require: true,
+        require: false,
         value: ""
     },
     {
@@ -64,7 +64,6 @@ const inputs = [
         name: "gender",
         type: "select",
         message: "Email invalid",
-        require: true,
         options: [{ value: 1, name: 'Male' }, { value: 2, name: 'Female' }]
     }
 ]
