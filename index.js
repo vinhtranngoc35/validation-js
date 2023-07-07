@@ -85,75 +85,71 @@ document.addEventListener('invalid', (function () {
     };
 })(), true);
 renderForm();
-new DataTable('#example', {
-    ajax: 'scripts/server_processing.php',
-    processing: true,
-    serverSide: true
-});
-// $(function () {
-//     const dataGrid = $("#dataGrid").dxDataGrid({
-//         dataSource: employees,
-//         keyExpr: "EmployeeID",
-
-//         columns: [
-//             {
-//                 dataField: "TitleOfCourtesy",
-//                 // ...
-//                 groupIndex: 0,
-//             },
-//             {
-//                 dataField: "FullName",
-//                 validationRules: [{ type: "required" }]
-//             }, {
-//                 dataField: "Position",
-//                 validationRules: [{ type: "required" }]
-//             }, {
-//                 dataField: "BirthDate",
-//                 dataType: "date",
-//                 validationRules: [{ type: "required" }]
-//             }, {
-//                 dataField: "HireDate",
-//                 dataType: "date",
-//                 validationRules: [{ type: "required" }]
-//             },
-//             // ...
-//             {
-//                 dataField: "Country",
-//                 cellTemplate: function (container, info) {
-//                     console.log('template')
-//                     const currentEmployeeData = info.data;
-//                     container.append(
-//                         $(`<div>Hello ${currentEmployeeData.FullName}</div>`)
-//                     );
-//                 }
-//             },
-//             {
-//                 type: "buttons",
-//                 buttons: ["edit", "delete", {
-//                     text: "My Command",
-//                     hint: "My Command",
-//                     onClick: function (e) {
-//                         console.log('demo')
-//                     }
-//                 }]
-//             }
-//             // ...
-//         ],
-//         selection: { mode: "single" },
-//         onSelectionChanged: function (e) {
-//             console.log('demo')
-//             e.component.byKey(e.currentSelectedRowKeys[0]).done(employee => {
-//                 if (employee) {
-//                     $("#selected-employee").text(`Selected employee: ${employee.FullName}`);
-//                 }
-//             });
-//         },
-//         customizeColumns: function (columns) {
-//             console.log(columns);
-//         },
-//         grouping: {
-//             autoExpandAll: true,
-//         },
-//     });
+// new DataTable('#example', {
+//     ajax: 'scripts/server_processing.php',
+//     processing: true,
+//     serverSide: true
 // });
+$(function () {
+    const dataGrid = $("#dataGrid").dxDataGrid({
+        dataSource: employees,
+        keyExpr: "EmployeeID",
+
+        columns: [
+            {
+                dataField: "TitleOfCourtesy",
+                // ...
+                groupIndex: 0,
+            },
+            {
+                dataField: "FullName",
+            }, {
+                dataField: "Position"
+            }, {
+                dataField: "BirthDate",
+                dataType: "date"
+            }, {
+                dataField: "HireDate",
+                dataType: "date"
+            },
+            // ...
+            {
+                dataField: "Country",
+                cellTemplate: function (container, info) {
+                    console.log('template')
+                    const currentEmployeeData = info.data;
+                    container.append(
+                        $(`<div>Hello ${currentEmployeeData.Country}</div>`)
+                    );
+                }
+            },
+            {
+                type: "buttons",
+                buttons: ["edit", {
+                    text: "Edit",
+                    hint: "My Command",
+                    onClick: function (e) {
+                        console.log(e)
+                    }
+                }]
+            }
+            // ...
+        ],
+        selection: { mode: "single" },
+        onSelectionChanged: function (e) {
+            console.log('demo')
+            e.component.byKey(e.currentSelectedRowKeys[0]).done(employee => {
+                if (employee) {
+                    $("#selected-employee").text(`Selected employee: ${employee.FullName}`);
+                }
+            });
+        },
+        customizeColumns: function (columns) {
+            console.log(columns);
+        },
+        grouping: {
+            autoExpandAll: true,
+        },
+    });
+});
 
