@@ -1,0 +1,29 @@
+.header{
+    background-color: crimson;
+    height: 200px;
+    text-align: center;
+}
+
+.body{
+    display: flex;
+}
+
+.col-left{
+    width: 30%;
+    background-color: blueviolet;
+    height: 800px;
+}
+.col-middle{
+    width: 40%;
+    background-color: burlywood;
+    height: 800px;
+}
+.col-right{
+    width: 30%;
+    background-color: yellow;
+    height: 800px;
+}
+.footer{
+    height: 100px;
+    background-color: greenyellow;
+}
